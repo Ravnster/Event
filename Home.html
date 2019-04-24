@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <script type="text/javascript" src="script1.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="StyleSheet1.css" />
+
+</head>
+<body onload="startTime()">
+    <div class="wrapper">
+        <div class="box header">Home</div>
+        <div class="box menu">
+            <div id="before"></div>
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+        </div>
+        <div id="after">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#">Deltakere</a>
+                <a href="#">Streamere</a>
+                <a href="#">Utstillere</a>
+                <a href="#">Crew</a>
+            </div>
+        </div>
+
+        <div class="box content">
+            Content
+            <div id="tid-dato">
+                <div id="tid"></div>
+                <div id="dato"></div>
+            </div>
+            <div id="graphWrapper">
+                <div id="graphTotal"><canvas id="Total-chart" style="height:10vh; width:20vw"></canvas></div>
+
+                <div id="graphDeltaker"><canvas id="Deltaker-chart" style="height:20vh; width:20vw"></canvas>
+                </div>
+                <div id="graphStreamere"><canvas id="Streamer-chart" style="height:20vh; width:20vw"></canvas></div>
+                <div id="graphUtstillere"><canvas id="Utstiller-chart" style="height:20vh; width:20vw"></canvas></div>
+                <div id="graphCrew"><canvas id="Crew-chart" style="height:20vh; width:20vw"></canvas></div>
+                
+                <div id="siste25Wrapper">
+
+                    <div id="siste25text">Siste 25 Inn / Ut</div>
+                    <div id="siste25inn">
+                        <ol id= "deltakere11">
+
+                        </ol>
+                    </div>
+                    <div id="siste25ut"></div>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script type="text/javascript" src="charstats.js"></script>
+<script>
+
+</script>
+</body>
+</html>
