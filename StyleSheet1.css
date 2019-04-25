@@ -205,7 +205,7 @@
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 45% 45%;
     grid-template-areas: "text text   "
                          "inn ut"
 }
@@ -215,21 +215,38 @@
 }
 #siste25ut {
     grid-area: ut;
-    border-left: solid 2px white;
+    font-size: 16px;
 }
 #siste25text {
     grid-area: text;
     padding: 20px;
+    
 }
 
 
-#deltakere11 {
-    -moz-column-count: 4;
-    -moz-column-gap: 4vw;
-    -webkit-column-count: 4;
-    -webkit-column-gap: 1vw;
-    column-count: 4;
-    column-gap: 50px;
+ul.last {
     list-style-type: none;
+    -moz-column-count: 4;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 20px;
+    column-count: 4;
+    column-gap: 20px;
+}
 
+#StreamerWrapper {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    position: relative;
+    grid-template-columns: auto;
+    grid-template-areas: "text text"
+                         "inn   ut"
+}
+div.borderline {
+    border: solid 1px red;
+}
+.liste2 {
+    color: black;
+    font-size: 50px;
 }
