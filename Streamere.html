@@ -11,7 +11,7 @@
 
 
     <script type="text/javascript" src="clock.js"></script>
-    <script type="text/javascript" src="script1.js"></script>
+    <script type="text/javascript" src="streamer.js"></script>
 
 
     <link rel="stylesheet" type="text/css" href="StyleSheet1.css" />
@@ -27,6 +27,7 @@
         <div id="after">
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="Home.html">Home</a>
                 <a href="#">Deltakere</a>
                 <a href="#">Streamere</a>
                 <a href="#">Utstillere</a>
@@ -58,6 +59,7 @@
     </div>
 <script>
 
+
     db.collection('users').where('streamer', '==', true).get().then(
         function (userSnapshot) {
             userSnapshot.forEach(
@@ -75,33 +77,37 @@
 
                 });
         });
-  /*  db.collection('users').where('streamer', '==', true).where('inside', '==', true).get().then(
-        function (userSnapshot) {
-            userSnapshot.forEach(
-                function (users) {
-                    var id = users.data().id;
-                    var navn = users.data().navn;
-                    var html = '';
-                    html += `<li>ID:${id} Navn: ${navn}</li>`;
-                    document.getElementById('StreamerInn').innerHTML = html;
 
-                });
-        });
-    db.collection('users').where('streamer', '==', true).where('inside', '==', false).get().then(
-        function (userSnapshot) {
-            userSnapshot.forEach(
-                function (users) {
-                    var id = users.data().id;
-                    var navn = users.data().navn;
-                    var html = '';
-                    
-                    html += `<li>ID:${id} Navn: ${navn}</li>`;
-                    document.getElementById('StreamerUte').innerHTML = html;
-                    html.classList.add('liste2');
 
-                });
-        });
-        */
+
+
+    /*  db.collection('users').where('streamer', '==', true).where('inside', '==', true).get().then(
+          function (userSnapshot) {
+              userSnapshot.forEach(
+                  function (users) {
+                      var id = users.data().id;
+                      var navn = users.data().navn;
+                      var html = '';
+                      html += `<li>ID:${id} Navn: ${navn}</li>`;
+                      document.getElementById('StreamerInn').innerHTML = html;
+  
+                  });
+          });
+      db.collection('users').where('streamer', '==', true).where('inside', '==', false).get().then(
+          function (userSnapshot) {
+              userSnapshot.forEach(
+                  function (users) {
+                      var id = users.data().id;
+                      var navn = users.data().navn;
+                      var html = '';
+                      
+                      html += `<li>ID:${id} Navn: ${navn}</li>`;
+                      document.getElementById('StreamerUte').innerHTML = html;
+                      html.classList.add('liste2');
+  
+                  });
+          });
+          */
 </script>
 </body>
 </html>

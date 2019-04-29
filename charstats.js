@@ -1,25 +1,55 @@
 // JavaScript source code
-new Chart(document.getElementById("Total-chart"), {
-    type: 'doughnut',
-    data: {
-        labels: ["Ute", "Inne"],
-        datasets: [
-            {
-                label: "Population (millions)",
-                backgroundColor: ["#144CCC", "#33CEFF"],
-                data: [67, 190]
-            }
-        ]
-    },
-    options: {
-        title: {
-            display: true,
-            text: 'Total',
-            fontSize: 25,
-            fontColor: '#fff'
-        }
+
+var userref = db.collection("users");
+
+/*userref.where('streamer', '==', true)
+    .where('inside', '==', false).get().then(snap => {
+        intrue = snap.size
+        console.log(intrue);
+    });
+    */
+var text = "true false true true true false";
+    count = 0;
+
+for (var i = 0; i < text.length; i++) {
+    if (text.charAt(i) === 'true') {
+        count++;
     }
-});
+}
+console.log(count);
+
+
+userref.where('streamer', '==', true).get().then(
+    function(userSnapshot) {
+        userSnapshot.forEach(
+            function(users) {
+                var boolval = users.data().inside;
+
+
+                console.log(boolval)
+                var dummy = 5;
+                new Chart(document.getElementById("Total-chart"), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Ute", "Inne"],
+                        datasets: [
+                            {
+                                backgroundColor: ["#144CCC", "#33CEFF"],
+                                data: [dummy, 2]
+                            }
+                        ]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Total',
+                            fontSize: 25,
+                            fontColor: '#fff'
+                        }
+                    }
+                });
+            });
+    });
 
 new Chart(document.getElementById("Deltaker-chart"), {
     type: 'doughnut',
@@ -27,7 +57,6 @@ new Chart(document.getElementById("Deltaker-chart"), {
         labels: ["Ute", "Inne"],
         datasets: [
             {
-                label: "Population (millions)",
                 backgroundColor: ["#144CCC", "#33CEFF"],
                 data: [23, 152]
             }
@@ -49,7 +78,6 @@ new Chart(document.getElementById("Streamer-chart"), {
         labels: ["Ute", "Inne"],
         datasets: [
             {
-                label: "Population (millions)",
                 backgroundColor: ["#144CCC", "#33CEFF"],
                 data: [0, 9]
             }
@@ -71,7 +99,6 @@ new Chart(document.getElementById("Utstiller-chart"), {
         labels: ["Ute", "Inne"],
         datasets: [
             {
-                label: "Population (millions)",
                 backgroundColor: ["#144CCC", "#33CEFF"],
                 data: [6, 14]
             }
@@ -93,7 +120,6 @@ new Chart(document.getElementById("Crew-chart"), {
         labels: ["Ute", "Inne"],
         datasets: [
             {
-                label: "Population (millions)",
                 backgroundColor: ["#144CCC", "#33CEFF"],
                 data: [29, 24]
             }
