@@ -9,6 +9,7 @@ var config = {
 };
 firebase.initializeApp(config);
 const db = firebase.firestore();
+var userref = db.collection("users");
 
 
 var li;
@@ -33,6 +34,36 @@ function closeNav() {
 }
 
 
+db.collection("users").where('inside', '==', true).orderBy("time").limit(25)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            var navn = doc.data().navn;
+            let milliseconds = doc.data().timeStamp;
+            let currentDate = new Date(milliseconds);
+            console.log(navn);
+            let html = '';
+            html += `<li onclick="()">${navn} time: ${currentDate}</li>`;
+            document.getElementById('deltakere11').innerHTML += html;
+
+
+            html.onclick = function () {
+                console.log(id);
+            };
+            //var id = doc.id;
+            //test(id);
+
+        });
+
+    })
+
+/*function test(val) {
+    var id = val;
+    console.log(id);
+}
+
+*/
+/*
 db.collection('users').where('crew', '==', true).get().then(
     function(userSnapshot) {
         userSnapshot.forEach(
@@ -59,3 +90,4 @@ db.collection('users').where('utstiller', '==', true).get().then(
             });
     });
 
+*/

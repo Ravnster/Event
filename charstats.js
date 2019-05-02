@@ -1,6 +1,5 @@
 // JavaScript source code
 
-var userref = db.collection("users");
 
 /*userref.where('streamer', '==', true)
     .where('inside', '==', false).get().then(snap => {
@@ -9,7 +8,7 @@ var userref = db.collection("users");
     });
     */
 var text = "true false true true true false";
-    count = 0;
+count = 0;
 
 for (var i = 0; i < text.length; i++) {
     if (text.charAt(i) === 'true') {
@@ -19,15 +18,17 @@ for (var i = 0; i < text.length; i++) {
 console.log(count);
 
 
-userref.where('streamer', '==', true).get().then(
-    function(userSnapshot) {
+
+db.collection('users').onSnapshot(
+    function (userSnapshot) {
+        let inside = 0;
+        let outside = 0;
         userSnapshot.forEach(
-            function(users) {
-                var boolval = users.data().inside;
-
-
-                console.log(boolval)
-                var dummy = 5;
+            function (users) {
+                let user = users.data();
+                if (user.inside) inside++;
+                else outside++;
+            });
                 new Chart(document.getElementById("Total-chart"), {
                     type: 'doughnut',
                     data: {
@@ -35,7 +36,7 @@ userref.where('streamer', '==', true).get().then(
                         datasets: [
                             {
                                 backgroundColor: ["#144CCC", "#33CEFF"],
-                                data: [dummy, 2]
+                                data: [outside, inside]
                             }
                         ]
                     },
@@ -49,90 +50,136 @@ userref.where('streamer', '==', true).get().then(
                     }
                 });
             });
+
+db.collection('users').where('deltaker', '==', true).onSnapshot(
+    function (userSnapshot) {
+        let inside = 0;
+        let outside = 0;
+        userSnapshot.forEach(
+            function (users) {
+                let user = users.data();
+                if (user.inside) inside++;
+                else outside++;
+            });
+        new Chart(document.getElementById("Deltaker-chart"), {
+            type: 'doughnut',
+            data: {
+                labels: ["Ute", "Inne"],
+                datasets: [
+                    {
+                        backgroundColor: ["#144CCC", "#33CEFF"],
+                        data: [outside, inside]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Deltaker',
+                    fontSize: 25,
+                    fontColor: '#fff'
+                }
+            }
+        });
+    });
+db.collection('users').where('streamer', '==', true).onSnapshot(
+    function (userSnapshot) {
+        let inside = 0;
+        let outside = 0;
+        userSnapshot.forEach(
+            function (users) {
+                let user = users.data();
+                if (user.inside) inside++;
+                else outside++;
+            });
+        new Chart(document.getElementById("Streamer-chart"), {
+            type: 'doughnut',
+            data: {
+                labels: ["Ute", "Inne"],
+                datasets: [
+                    {
+                        backgroundColor: ["#144CCC", "#33CEFF"],
+                        data: [outside, inside]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Streamer',
+                    fontSize: 25,
+                    fontColor: '#fff'
+                }
+            }
+        });
     });
 
-new Chart(document.getElementById("Deltaker-chart"), {
-    type: 'doughnut',
-    data: {
-        labels: ["Ute", "Inne"],
-        datasets: [
-            {
-                backgroundColor: ["#144CCC", "#33CEFF"],
-                data: [23, 152]
+
+db.collection('users').where('utstiller', '==', true).onSnapshot(
+    function (userSnapshot) {
+        let inside = 0;
+        let outside = 0;
+        userSnapshot.forEach(
+            function (users) {
+                let user = users.data();
+                if (user.inside) inside++;
+                else outside++;
+            });
+        console.log(inside, outside);
+        new Chart(document.getElementById("Utstiller-chart"), {
+            type: 'doughnut',
+            data: {
+                labels: ["Ute", "Inne"],
+                datasets: [
+                    {
+                        backgroundColor: ["#144CCC", "#33CEFF"],
+                        data: [outside, inside]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Utstiller',
+                    fontSize: 25,
+                    fontColor: '#fff'
+                }
             }
-        ]
-    },
-    options: {
-        title: {
-            display: true,
-            text: 'Deltaker',
-            fontSize: 25,
-            fontColor: '#fff'
-        }
-    }
-});
+        });
+    });
 
-new Chart(document.getElementById("Streamer-chart"), {
-    type: 'doughnut',
-    data: {
-        labels: ["Ute", "Inne"],
-        datasets: [
-            {
-                backgroundColor: ["#144CCC", "#33CEFF"],
-                data: [0, 9]
+
+
+
+db.collection('users').where('crew', '==', true).onSnapshot(
+    function (userSnapshot) {
+        let inside = 0;
+        let outside = 0;
+        userSnapshot.forEach(
+            function (users) {
+                let user = users.data();
+                if (user.inside) inside++;
+                else outside++;
+            });
+        new Chart(document.getElementById("Crew-chart"), {
+            type: 'doughnut',
+            data: {
+                labels: ["Ute", "Inne"],
+                datasets: [
+                    {
+                        backgroundColor: ["#144CCC", "#33CEFF"],
+                        data: [outside, inside]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Crew',
+                    fontSize: 25,
+                    fontColor: '#fff'
+                }
             }
-        ]
-    },
-    options: {
-        title: {
-            display: true,
-            text: 'Streamer',
-            fontSize: 25,
-            fontColor: '#fff'
-        }
-    }
-});
+        });
 
-new Chart(document.getElementById("Utstiller-chart"), {
-    type: 'doughnut',
-    data: {
-        labels: ["Ute", "Inne"],
-        datasets: [
-            {
-                backgroundColor: ["#144CCC", "#33CEFF"],
-                data: [6, 14]
-            }
-        ]
-    },
-    options: {
-        title: {
-            display: true,
-            text: 'Utstiller',
-            fontSize: 25,
-            fontColor: '#fff'
-        }
-    }
-});
-
-new Chart(document.getElementById("Crew-chart"), {
-    type: 'doughnut',
-    data: {
-        labels: ["Ute", "Inne"],
-        datasets: [
-            {
-                backgroundColor: ["#144CCC", "#33CEFF"],
-                data: [29, 24]
-            }
-        ]
-    },
-    options: {
-        title: {
-            display: true,
-            text: 'Crew',
-            fontSize: 25,
-            fontColor: '#fff'
-        }
-    }
-});
-
-
+    });

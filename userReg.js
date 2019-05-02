@@ -1,16 +1,3 @@
-var config = {
-    apiKey: "AIzaSyBTVzW4gM0ScJuLwZTtNHlyW1TKRAJGMq0",
-    authDomain: "lan-event.firebaseapp.com",
-    databaseURL: "https://lan-event.firebaseio.com",
-    projectId: "lan-event",
-    storageBucket: "lan-event.appspot.com",
-    messagingSenderId: "678873268993"
-};
-firebase.initializeApp(config);
-const db = firebase.firestore();
-
-
-
 
 function submit() {
     var id = document.getElementById("id").value;
@@ -33,7 +20,8 @@ function submit() {
         streamer: streamer,
         utstiller: utstiller,
         inside: false,
-        crew: crew
+        crew: crew,
+        time: firebase.firestore.Timestamp.fromDate(new Date())
 
     })
         .then(function () {
