@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
+
+
+
+    <script type="text/javascript" src="clock.js"></script>
+    <script type="text/javascript" src="userInfo.js"></script>
+
+
+
+    <link rel="stylesheet" type="text/css" href="StyleSheet1.css" />
+
+</head>
+<body onload="startTime()">
+    <div class="wrapper">
+        <div class="box header" id="brukerNavn"></div>
+        <div class="box menu">
+            <div id="before"></div>
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+        </div>
+        <div id="after">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="Home.html">Home</a>
+                <a href="#">Deltakere</a>
+                <a href="Streamere.html">Streamere</a>
+                <a href="#">Utstillere</a>
+                <a href="#">Crew</a>
+            </div>
+        </div>
+
+        <div class="box content">
+            <div id="tid-dato">
+                <div id="tid"></div>
+                <div id="dato"></div>
+            </div>
+            <div id="userInfoWrapper">
+                <div>
+                    <div id="userInfo">
+                        <ul id="navn"></ul>
+                        <ul id="rad"></ul>
+                        <ul id="sete">Sete</ul>
+                        <ul id="tlf">Tlf nummer</ul>
+                        <ul id="ftlf"></ul>
+
+                    </div>
+                    <div id="userState">
+                        <ul id="erDeltaker">Er Deltaker</ul>
+                        <ul id="erUtstiller">Er Utstiller</ul>
+                        <ul id="erStreamer">Er Streamer</ul>
+                        <ul id="erCrew">Er Crew</ul>
+
+                    </div>
+                </div>
+
+                <div id="userStatus"></div>
+
+                <div id="userManualReg">
+                    <div id="loggInniHall" onclick="toggleUser()"> Logg </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>
