@@ -209,13 +209,15 @@
     grid-template-areas: "text text   "
                          "inn ut"
 }
-#siste25inn {
+#siste25Inne {
     grid-area: inn;
     font-size: 16px;
+    color: red;
 }
-#siste25ut {
+#siste25Ute {
     grid-area: ut;
     font-size: 16px;
+    color: black;
 }
 #siste25text {
     grid-area: text;

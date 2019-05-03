@@ -10,6 +10,16 @@ function submit() {
     var utstiller = document.getElementById("utstiller").checked;
     var crew = document.getElementById("crew").checked;
 
+    var today = new Date();
+    var hr = today.getHours();
+    var min = today.getMinutes();
+
+    var days = ['Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør'];
+    var curWeekDay = days[today.getDay()];
+    var date = curWeekDay + " " + hr + ":" + min;
+    console.log(date);
+
+
     db.collection('users').add({
         id: id,
         navn: navn,
@@ -21,7 +31,7 @@ function submit() {
         utstiller: utstiller,
         inside: false,
         crew: crew,
-        time: firebase.firestore.Timestamp.fromDate(new Date())
+        time: date
 
     })
         .then(function () {
@@ -35,4 +45,6 @@ function submit() {
 function resetForm() {
     document.getElementById("userReg").reset();
 }
+
+
 

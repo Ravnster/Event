@@ -35,59 +35,39 @@ function closeNav() {
 
 
 db.collection("users").where('inside', '==', true).orderBy("time").limit(25)
-    .get()
-    .then(function(querySnapshot) {
-        querySnapshot.forEach(function (doc) {
+    .onSnapshot(function (userSnapshot) {
+        userSnapshot.forEach(function (doc) {
             var navn = doc.data().navn;
-            let milliseconds = doc.data().timeStamp;
-            let currentDate = new Date(milliseconds);
-            console.log(navn);
+            var date = doc.data().time;
             let html = '';
-            html += `<li onclick="()">${navn} time: ${currentDate}</li>`;
-            document.getElementById('deltakere11').innerHTML += html;
+            html += `<li>${date}:  ${navn} </li>`;
+            document.getElementById('siste25Inne').innerHTML += html;
 
 
-            html.onclick = function () {
-                console.log(id);
-            };
             //var id = doc.id;
             //test(id);
 
         });
-
     })
 
-/*function test(val) {
-    var id = val;
-    console.log(id);
-}
+db.collection("users").where('inside', '==', false).orderBy("time").limit(25)
+    .onSnapshot(function (userSnapshot) {
+        userSnapshot.forEach(function (doc) {
+            var navn = doc.data().navn;
+            var date = doc.data().time;
+            let html = '';
+            html += `<li>${date}:  ${navn} </li>`;
+            document.getElementById('siste25Ute').innerHTML += html;
 
-*/
-/*
-db.collection('users').where('crew', '==', true).get().then(
-    function(userSnapshot) {
-        userSnapshot.forEach(
-            function (users) {
-                var id = users.data().id;
-                var navn = users.data().navn;
-                var html = '';
-                html += `<li>ID:${id} Navn: ${navn}</li>`;
-                document.getElementById('deltakere11').innerHTML = html;
 
-            });
-    });
+            //Prøver å få ID til hver bruker jeg trykker på for å bruke de i bruker.html
+            html.addEventListener('click', (e) =>
+            {
+                let id = getAttribute('data-id');
+                console.log(id);
+            })
+            //var id = doc.id;
+            //test(id);
 
-db.collection('users').where('utstiller', '==', true).get().then(
-    function (userSnapshot) {
-        userSnapshot.forEach(
-            function (users) {
-                var id = users.data().id;
-                var navn = users.data().navn;
-                var html = '';
-                html += `<li>ID:${id} Navn: ${navn}</li>`;
-                document.getElementById('utstiller').innerHTML = html;
-
-            });
-    });
-
-*/
+        });
+    })

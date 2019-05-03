@@ -9,7 +9,7 @@ var config = {
 };
 firebase.initializeApp(config);
 const db = firebase.firestore();
-const docRef = db.collection("users").doc("2EQVhH4Kt1Untvm3JcL5");
+const docRef = db.collection("users").doc("gkP2iuRSaqbRCl3jL64n");
 
 docRef.get().then(function (doc) {
     console.log(doc.data())
@@ -67,9 +67,22 @@ docRef.onSnapshot(function (user) {
 
 function toggleUser() {
     docRef.get().then(function (user) {
-        var inside = user.data().inside
+        var inside = user.data().inside;
+        var today = new Date();
+        var hr = today.getHours();
+        var min = today.getMinutes();
+
+        var days = ['Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør'];
+        var curWeekDay = days[today.getDay()];
+        var date = curWeekDay + " " + hr + ":" + min;
+
+        docRef.update({
+            time: date
+
+        })
 
         if (inside == true) {
+
             docRef.update({
                 inside: false
 
