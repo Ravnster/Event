@@ -16,7 +16,7 @@
 </head>
 <body onload="startTime()">
     <div class="wrapper">
-        <div class="box header">Streamere</div>
+        <div class="box header">Utstillere</div>
         <div class="boxmenu">
             <div id="before"></div>
             <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
@@ -57,12 +57,11 @@
 
 
     </div>
-<script>
+    <script>
 
-    db.collection("users").where('streamer', '==', true).where('inside', '==', true)
+    db.collection("users").where('utstiller', '==', true).where('inside', '==', true)
         .onSnapshot(function (userSnapshot) {
             document.getElementById('StreamerInn').innerHTML = '';
-
             userSnapshot.forEach(function (doc) {
                 var navn = doc.data().navn;
                 var date = doc.data().time;
@@ -71,10 +70,9 @@
                 document.getElementById('StreamerInn').innerHTML += html;
             });
         })
-    db.collection("users").where('streamer', '==', true).where('inside', '==', false)
+    db.collection("users").where('utstiller', '==', true).where('inside', '==', false)
         .onSnapshot(function (userSnapshot) {
             document.getElementById('StreamerUte').innerHTML = '';
-
             userSnapshot.forEach(function (doc) {
                 var navn = doc.data().navn;
                 var date = doc.data().time;
@@ -87,6 +85,6 @@
     function something(data) {
         location.href = 'test.html#id=' + data
     }
-</script>
+    </script>
 </body>
 </html>

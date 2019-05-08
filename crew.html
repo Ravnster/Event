@@ -9,17 +9,14 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
 
 
-    <script type="text/javascript" src="userReg.js"></script>
+    <script type="text/javascript" src="userInfo.js"></script>
     <script type="text/javascript" src="Script1.js"></script>
-
-
-
     <link rel="stylesheet" type="text/css" href="StyleSheet1.css" />
 
 </head>
 <body onload="startTime()">
     <div class="wrapper">
-        <div class="box header">Admin</div>
+        <div class="box header">Crew</div>
         <div class="boxmenu">
             <div id="before"></div>
             <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
@@ -43,28 +40,17 @@
                 <div id="tid"></div>
                 <div id="dato"></div>
             </div>
-            <div>
-                <form id="userReg">
-                    Id:<br /> <input type="text" id="id"><br />
-                    Navn:<br /> <input type="text" id="navn"><br />
-                    Nick:<br /> <input type="text" id="nick"><br />
-                    Tlf:<br /> <input type="text" id="tlf"><br />
-                    Rad:<br /> <input type="text" id="rad"><br />
-                    Sete:<br /> <input type="text" id="sete"><br />
 
+            <div id="StreamerWrapper">
 
-                    <input type="checkbox" id="deltaker">
-                    <label for="maths">Deltaker</label>
-                    <input type="checkbox" id="streamer">
-                    <label for="Streamer">Streamer</label>
-                    <input type="checkbox" id="utstiller">
-                    <label for="Utstiller">Utstriller</label>
-                    <input type="checkbox" id="crew">
-                    <label for="crew">Crew</label>
-                </form>
-                <button onclick="submit()">Submit</button>
+                <div id="siste25text">Inne / Ute</div>
+                <div id="siste25inn" class="borderline">
+                    <ul class="last" id="StreamerInn"></ul>
+                </div>
+                <div id="siste25ut" class="borderline">
+                    <ul class="last" id="StreamerUte"></ul>
+                </div>
             </div>
-
 
         </div>
 
@@ -73,8 +59,30 @@
     </div>
     <script>
 
+    db.collection("users").where('crew', '==', true).where('inside', '==', true)
+        .onSnapshot(function (userSnapshot) {
+            userSnapshot.forEach(function (doc) {
+                var navn = doc.data().navn;
+                var date = doc.data().time;
+                let html = '';
+                html += `<li onclick="something('${doc.id}')">${date}:  ${navn} </li>`;
+                document.getElementById('StreamerInn').innerHTML += html;
+            });
+        })
+    db.collection("users").where('crew', '==', true).where('inside', '==', false)
+        .onSnapshot(function (userSnapshot) {
+            userSnapshot.forEach(function (doc) {
+                var navn = doc.data().navn;
+                var date = doc.data().time;
+                let html = '';
+                html += `<li onclick="something('${doc.id}')">${date}:  ${navn} </li>`;
+                document.getElementById('StreamerUte').innerHTML += html;
+            });
+        })
 
-
+    function something(data) {
+        location.href = 'test.html#id=' + data
+    }
     </script>
 </body>
 </html>

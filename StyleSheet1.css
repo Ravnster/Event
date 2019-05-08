@@ -1,9 +1,11 @@
-﻿body {
-    background-color: #464646;
+﻿@import url(https://fonts.google.com/specimen/Libre+Franklin);
+body {
+    background: linear-gradient(-45deg, #131313, #04187E, #131313);
+    background-size: 800% 800%;
+    -webkit-animation: Gradient 120s ease infinite;
+    -moz-animation: Gradient 120s ease infinite;
+    animation: Gradient 120s ease infinite;
     margin: 0px;
-    width: 100%;
-    font-family: FRANKLIN GOTHIC FS;
-
 }
 
 .wrapper {
@@ -27,12 +29,8 @@
 .content {
     grid-area: content;
     position: relative;
-    height: 90vh;
-    background: linear-gradient(-45deg, #131313, #04187E, #131313);
-    background-size: 400% 400%;
-    -webkit-animation: Gradient 120s ease infinite;
-    -moz-animation: Gradient 120s ease infinite;
-    animation: Gradient 120s ease infinite;
+    height: auto;
+
 }
 
 @-webkit-keyframes Gradient {
@@ -47,56 +45,36 @@
     }
 }
 
-@-moz-keyframes Gradient {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@keyframes Gradient {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
-}
 
 .header {
     grid-area: header;
 }
 
-
 .wrapper {
     display: grid;
-    grid-template-columns: 10% 45% 45%;
-    grid-template-areas: "menu header  header" 
-                         "menu content content";
-    background-color: #464646;
-    color: #444;
+    grid-template-columns: 8% 46% 46%;
+    grid-template-areas: "menu header  header" "menu content content";
 }
 
 .box {
-    background-color: #444;
     color: #fff;
     padding: 20px;
     font-size: 150%;
+
 }
 
 .header {
     background-color: white;
     color: black;
 }
-
+.boxmenu {
+    background-color: #464646;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    width: 8%;
+    padding-top: 10px;
+}
 .sidenav {
     height: 100%;
     width: 0;
@@ -109,7 +87,6 @@
     transition: 0.5s;
     padding-top: 60px;
 }
-
     .sidenav a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
@@ -118,11 +95,9 @@
         display: block;
         transition: 0.3s;
     }
-
         .sidenav a:hover {
             color: navy;
         }
-
     .sidenav .closebtn {
         position: absolute;
         top: 0;
@@ -200,54 +175,53 @@
                           "graphDeltaker graphStreamer graphUtstiller graphCrew"
                           "siste25 siste25 siste25 siste25"
 }
-#siste25Wrapper {
+#siste25Wrapper, #StreamerWrapper {
+    border: solid 1px black;
     grid-area: siste25;
-    margin: 0;
-    padding: 0;
     display: grid;
-    grid-template-columns: 45% 45%;
+    padding-bottom: 2vh;
+    grid-template-columns: 40vw 40vw;
     grid-template-areas: "text text   "
                          "inn ut"
 }
-#siste25Inne {
-    grid-area: inn;
-    font-size: 16px;
-    color: red;
-}
-#siste25Ute {
+    #StreamerWrapper{
+        margin-top: 6vh;
+    }
+    #siste25Inne, #StreamerInn {
+        text-align: left;
+        grid-area: inn;
+        font-size: 60%;
+        color: red;
+        font-family: "Arial Black", Gadget, sans-serif;
+    }
+#siste25Ute, #StreamerUte {
     grid-area: ut;
-    font-size: 16px;
-    color: black;
+    width: 43vw;
+    font-size: 60%;
+    text-align: left;
+    color: red;
+    border-left: solid 2px white;
+    font-family: "Arial Black", Gadget, sans-serif;
+
 }
 #siste25text {
     grid-area: text;
-    padding: 20px;
-    
+    margin: 0;
+    font-family: "Arial Black", Gadget, sans-serif;
+
 }
 
 
-ul.last {
+ul.last, #StreamerInn, #StreamerUte, #siste25Inne, #siste25Ute {
     list-style-type: none;
     -moz-column-count: 4;
     -moz-column-gap: 20px;
     -webkit-column-count: 4;
     -webkit-column-gap: 20px;
     column-count: 4;
-    column-gap: 20px;
+    column-gap: 5px;
 }
 
-#StreamerWrapper {
-    margin: 0;
-    padding: 0;
-    display: grid;
-    position: relative;
-    grid-template-columns: auto;
-    grid-template-areas: "text text"
-                         "inn   ut"
-}
-div.borderline {
-    border: solid 1px red;
-}
 .liste2 {
     color: black;
     font-size: 50px;
@@ -260,22 +234,47 @@ div.borderline {
     display: grid;
     position: relative;
     grid-template-columns: auto;
-    grid-template-areas: "userInfo userInfo  userState userState " "userStatus userStatus userStatus userStatus" "userManualReg userManualReg userManualReg userManualReg"
+    grid-template-areas: "temp  userState  "
+        "userStatus userStatus  "
+        "userManualReg userManualReg  "
+        "editUser editUser  "
+}
+#border {
+    border: solid 1px red;
+    grid-area: temp;
+    width: auto;
+    margin: auto;
+    grid-template-areas: "userHeader userHeader" "userInfo userInfoSvar ";
 }
 #userInfo {
     grid-area: userInfo;
-    border: solid 1px red;
     float: left;
-    width: 25vw;
-    margin-left: 15vw;
+    width: auto;
+    text-align: left;
+}
+#test1337{
+    grid-area: userInfoSvar;
+    float: left;
+    margin-left: 2vw;
+    text-align: left;
+}
+.span {
+    grid-area: userHeader;
+    font-family: 'Libre Franklin ', Open Sans;
+    font-weight: bold;
+    font-size: 28px;
+    -webkit-text-decoration: slateblue solid underline;
+    text-decoration: red solid underline;
+    -webkit-text-underline-position: auto;
+    text-underline-position: auto;
 }
 #userState {
-
     grid-area: userState;
     border: solid 1px yellow;
     float: right;
     width: 25vw;
-
+    margin: auto;
+    text-align: left;
 }
 #userStatus {
     margin-top: 50px;
@@ -299,4 +298,59 @@ div.borderline {
 }
 #navn, #rad, #sete, #tlf, #ftlf, #erDeltaker, #erUtstiller, #erStreamer, #erCrew, #userStatus {
     list-style: none;
+}
+
+#editUser{
+    grid-area: editUser;
+    font-size: 18px;
+    border: solid 1px black;
+    display: none;
+}
+#mainContentUser{
+    height: 500px;
+    grid-area: user;
+}
+#editUser {
+    grid-area: editUser;
+    position: relative;
+    width: auto;
+    margin: auto;
+    color: white;
+    padding: 5vh;
+
+}
+
+#crew1, #utstiller1, #streamer1, #deltaker1, #sete1, #rad1, #tlf1, #nick1, #navn1, #id1 {
+    list-style: none;
+    font-size: 24px;
+    font-size: 110%;
+    display: inline;
+}
+#crew1, #utstiller1, #streamer1, #deltaker1{
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    transform: scale(2);
+    padding: 10px;
+    margin: 20px;
+}
+#userWrapper{
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    position: relative;
+    grid-template-areas: "user user"
+        "editUser editUser";
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
 }

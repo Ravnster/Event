@@ -1,24 +1,5 @@
 // JavaScript source code
 
-
-/*userref.where('streamer', '==', true)
-    .where('inside', '==', false).get().then(snap => {
-        intrue = snap.size
-        console.log(intrue);
-    });
-    */
-var text = "true false true true true false";
-count = 0;
-
-for (var i = 0; i < text.length; i++) {
-    if (text.charAt(i) === 'true') {
-        count++;
-    }
-}
-console.log(count);
-
-
-
 db.collection('users').onSnapshot(
     function (userSnapshot) {
         let inside = 0;
@@ -35,6 +16,7 @@ db.collection('users').onSnapshot(
                         labels: ["Ute", "Inne"],
                         datasets: [
                             {
+
                                 backgroundColor: ["#144CCC", "#33CEFF"],
                                 data: [outside, inside]
                             }
@@ -125,7 +107,6 @@ db.collection('users').where('utstiller', '==', true).onSnapshot(
                 if (user.inside) inside++;
                 else outside++;
             });
-        console.log(inside, outside);
         new Chart(document.getElementById("Utstiller-chart"), {
             type: 'doughnut',
             data: {

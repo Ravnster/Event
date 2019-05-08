@@ -5,6 +5,7 @@ function submit() {
     var tlf = document.getElementById("tlf").value;
     var rad = document.getElementById("rad").value;
     var sete = document.getElementById("sete").value;
+    var nick = document.getElementById("nick").value;
     var deltaker = document.getElementById("deltaker").checked;
     var streamer = document.getElementById("streamer").checked;
     var utstiller = document.getElementById("utstiller").checked;
@@ -17,12 +18,12 @@ function submit() {
     var days = ['Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør'];
     var curWeekDay = days[today.getDay()];
     var date = curWeekDay + " " + hr + ":" + min;
-    console.log(date);
 
-
+    
     db.collection('users').add({
         id: id,
         navn: navn,
+        nick: nick,
         tlf: tlf,
         rad: rad,
         sete: sete,
@@ -36,6 +37,7 @@ function submit() {
     })
         .then(function () {
             console.log("Skrevet");
+            console.log(id);
         })
         .catch(function () {
             console.errer("Error", error);
