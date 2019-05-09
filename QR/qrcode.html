@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QRScan</title>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
+    <style>
+        .blink {
+            /* NAME | TIME | ITERATION */
+            animation: logout 2s 1;
+        }
+        @keyframes logout {
+            0% {
+                background-color: white;
+                color: #ddd;
+            }
+
+            100% {
+                background-color: red;
+                color: #fff;
+            }
+        }
+
+        .blink2 {
+            /* NAME | TIME | ITERATION */
+            animation: login 2s 1;
+        }
+
+        @keyframes login {
+            0% {
+                background-color: white;
+                color: #ddd;
+            }
+
+            100% {
+                background-color: green;
+                color: #fff;
+            }
+        }
+
+        #preview {
+            display: inline-block;
+            margin: auto;
+            border: solid 10px black;
+            border-radius: 10px;
+               
+        }
+        #status{
+            padding: 10px;
+            font-size: 150%
+        }
+        body {
+            text-align: center
+        }
+
+    </style>
+</head>
+<body>
+<video id="preview"></video>
+<div id="status">erer</div>
+    <script>
+
+
+
+        const docRef1 = db.collection("users");
+
+        let scanner = new Instascan.Scanner(
+            {
+                video: document.getElementById('preview')
+            }
+        );
+        scanner.addListener('scan', function (content) {
+            console.log(content);
+            var docref = db.collection("users").doc(content);
+
+            db.collection("users").doc(content).get().then(function (doc) {
+                if (doc.exists) {
+                    var inside = doc.data().inside;
+
+                    if (inside == true) {
+                        docref.update({
+                            inside: false
+                            
+
+                        })
+                        
+                        logout();
+                    }
+
+                    else {
+                        docref.update({
+                            inside: true
+                        })
+                        login();
+
+                    }
+                    console.log("Inside: ", doc.data().inside);
+
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            }).catch(function (error) {
+                console.log("Error getting document:", error);
+            });
+
+
+        });
+        Instascan.Camera.getCameras().then(cameras => {
+            if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+            } else {
+                console.error("Error!");
+            }
+        });
+
+        function logout() {
+            document.getElementById('status').innerHTML = "Bruker logget ut";
+            var target = document.body;
+            target.addEventListener("animationend", function () {
+                this.classList.remove("blink");
+            });
+            target.classList.add("blink");
+        }
+
+        function login() {
+            document.getElementById('status').innerHTML = "Bruker logget Inn";
+            var target = document.body;
+            target.addEventListener("animationend", function () {
+                this.classList.remove("blink2");
+               
+            });
+            target.classList.add("blink2");
+
+        }
+    </script>
+</body>
+</html>
